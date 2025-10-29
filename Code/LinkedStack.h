@@ -5,7 +5,7 @@
 #ifndef LINKEDSTACK_H
 #define LINKEDSTACK_H
 
-#include "../LinkedList/LinkedList.h"
+#include "LinkedList.h"
 
 template<class T>
 

@@ -5,7 +5,7 @@
 #ifndef LINKEDQUEUE_H
 #define LINKEDQUEUE_H
 
-#include "../LinkedList/LinkedList.h"
+#include "LinkedList.h"
 #include "LinkedStack.h"
 
 template<class T>
