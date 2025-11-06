@@ -46,5 +46,4 @@ char* string = (char*) malloc(char*maxlen);
 
 ### KMP 字符串模式匹配算法
 
-
-
+[在 YouTube 上观看 KMP 字符匹配算法。](https://youtu.be/ynv7bbcSLKE?si=FOunPBv2C28C4C9g)

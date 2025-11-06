@@ -161,6 +161,17 @@ public:
         std::cout << p->value << std::endl;
     }
 
+    T& operator[](int idx) {
+        if (idx < 0 || idx >= length)
+            throw std::out_of_range("operator[]: index out of range");
+
+        Node<T>* p = this->head;
+        for (int i = 0; i < idx; i++)
+            p = p->next;
+
+        return p->value;
+    }
+
     Node<T>* headNode() {
         return head;
     }
