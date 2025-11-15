@@ -19,7 +19,7 @@ class Polynomial;
 template<typename T>
 
 class Node {
-private:
+protected:
     T value;
     Node<T>* next;
 
@@ -28,10 +28,35 @@ public:
     Node(T value = T(), Node<T>* next = nullptr): value(value), next(next) {}
 
     // 不在节点析构时递归删除 next，由链表统一管理节点生命周期
-    ~Node() = default;
+    virtual ~Node() = default;
 
-    T getValue() {
+    virtual T getValue() {
         return value;
+    }
+
+    friend class LinkedList<T>;
+    friend class LinkedStack<T>;
+    friend class LinkedQueue<T>;
+};
+
+
+template<typename T>
+
+class TriNode: public Node<T> {
+protected:
+    int row;
+    int column;
+
+public:
+    TriNode(int column=0, int row=0, T value=T()): Node<T>(value), row(row), column(column) {}
+    virtual ~TriNode() override = default;
+
+    virtual int getRow() {
+        return row;
+    }
+
+    virtual int getColumn() {
+        return column;
     }
 
     friend class LinkedList<T>;
@@ -41,16 +66,14 @@ public:
 
 template<typename T>
 
-class CrossNode: public Node<T> {
-private:
-    int column;
-    int row;
+class CrossNode: public TriNode<T> {
+protected:
     CrossNode* right;
     CrossNode* down;
 
 public:
-    CrossNode(int column, int row, T value, CrossNode* right=nullptr, CrossNode* down=nullptr): Node<T>(value), column(column), row(row), right(right), down(down) {}
-    ~CrossNode() = default;
+    CrossNode(int column, int row, T value, CrossNode* right=nullptr, CrossNode* down=nullptr): TriNode<T>(column, row, value), right(right), down(down) {}
+    ~CrossNode() override = default;
 
     void addRight(CrossNode* newNode) {
         this->right = newNode;
@@ -58,18 +81,6 @@ public:
 
     void addDown(CrossNode* newNode) {
         this->down = newNode;
-    }
-
-    int getColumn() {
-        return column;
-    }
-
-    int getRow() {
-        return row;
-    }
-
-    int getValue() {
-        return this->Node<T>::getValue();
     }
 
     CrossNode* getRight() {
@@ -84,6 +95,7 @@ public:
     friend class LinkedStack<T>;
     friend class LinkedQueue<T>;
 };
+
 
 class Monomial {
 private:

@@ -9,7 +9,6 @@ void crossRepresentation();
 int main(void) {
     crossRepresentation();
 
-
     return 0;
 }
 
