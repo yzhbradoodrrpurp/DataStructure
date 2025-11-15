@@ -24,7 +24,7 @@ public:
         int i = 0, j = 0;
 
         while (i < source->length && j < pattern->length) {
-            if ((*source)[i] != (*pattern)[j]) {
+            if ((*source)[i]->getValue() != (*pattern)[j]->getValue()) {
                 if (j!= 0)
                     j = lps[j - 1];
                 else
@@ -53,7 +53,7 @@ public:
         int i = 1, j = 0;
 
         while (i < this->length) {
-            if ((*this)[i] == (*this)[j]) {
+            if ((*this)[i]->getValue() == (*this)[j]->getValue()) {
                 j += 1;
                 lps[i] = j;
                 i += 1;

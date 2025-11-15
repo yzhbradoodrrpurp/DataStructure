@@ -11,7 +11,7 @@
 
 定义：栈的顺序存储结构，是利用一组地址连续的存储单元依次存放自栈底到栈顶的数据元素，同时设置指针 top 指示栈顶元素在顺序栈中的位置。
 
-- 通常使用数组实现顺序栈，所以会面临溢出的问题
+- **通常使用数组实现顺序栈，所以会面临溢出的问题**
 - 是先进后出类型
 
 多栈共享：多个栈共享一个或多个数组，可以合理利用存储单元。
@@ -49,8 +49,8 @@
 - 从 optr 中取出一个栈顶内容 optrTop，如果 optrTop 不是 =，循环以下内容，否则结束算法然后从 opnd 的栈顶得到运算结果
 - 如果 ch 是操作数，则放入 opnd
 - 如果 ch 是操作符，则比较 optrTop 和 ch 的优先级
-  - 如果 ch > optrTop，则 ch 进入 optr
-  - 如果 ch < optrTop，则从 opnd 中推出两个操作数 a, b，从 optr 中推出 optrTop，执行 a optrTop b 并将结果压入 opnd 中
+  - **如果 ch > optrTop，则 ch 进入 optr**
+  - **如果 ch < optrTop**，则从 opnd 中推出两个操作数 a, b，从 optr 中推出 optrTop，执行 a optrTop b 并将结果压入 opnd 中
   - 如果 optrTop = ch 且 ch == )，则 optrTop 一定为 (，则从 optr 中推出 optrTop 并对消括号
   - 如果 optrTop 和 ch 不兼容，则出现错误
 

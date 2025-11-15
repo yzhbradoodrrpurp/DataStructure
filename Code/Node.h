@@ -39,6 +39,52 @@ public:
     friend class LinkedQueue<T>;
 };
 
+template<typename T>
+
+class CrossNode: public Node<T> {
+private:
+    int column;
+    int row;
+    CrossNode* right;
+    CrossNode* down;
+
+public:
+    CrossNode(int column, int row, T value, CrossNode* right=nullptr, CrossNode* down=nullptr): Node<T>(value), column(column), row(row), right(right), down(down) {}
+    ~CrossNode() = default;
+
+    void addRight(CrossNode* newNode) {
+        this->right = newNode;
+    }
+
+    void addDown(CrossNode* newNode) {
+        this->down = newNode;
+    }
+
+    int getColumn() {
+        return column;
+    }
+
+    int getRow() {
+        return row;
+    }
+
+    int getValue() {
+        return this->Node<T>::getValue();
+    }
+
+    CrossNode* getRight() {
+        return right;
+    }
+
+    CrossNode* getDown() {
+        return down;
+    }
+
+    friend class LinkedList<T>;
+    friend class LinkedStack<T>;
+    friend class LinkedQueue<T>;
+};
+
 class Monomial {
 private:
     int coefficient;

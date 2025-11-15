@@ -161,7 +161,7 @@ public:
         std::cout << p->value << std::endl;
     }
 
-    T& operator[](int idx) {
+    virtual Node<T>*& getNode(int idx) {
         if (idx < 0 || idx >= length)
             throw std::out_of_range("operator[]: index out of range");
 
@@ -169,7 +169,11 @@ public:
         for (int i = 0; i < idx; i++)
             p = p->next;
 
-        return p->value;
+        return p;
+    }
+
+    Node<T>*& operator[](int idx) {
+        return getNode(idx);
     }
 
     Node<T>* headNode() {
