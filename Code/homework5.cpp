@@ -24,6 +24,7 @@ int main(void) {
     n3->addRight(n6);
 
     n1->show();
+    std::cout << std::endl;
 
     // preorder traversal
     n1->preorderTraverse(true);

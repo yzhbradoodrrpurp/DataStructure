@@ -20,14 +20,8 @@ public:
     Tree(T value=T(), Tree<T>* left=nullptr, Tree<T>* right=nullptr): value(value), left(left), right(right) {}
 
     virtual ~Tree() {
-        if (this->isLeaf())
-            delete this;
-
-        if (left)
-            left->postorderTraverse();
-
-        if (right)
-            right->postorderTraverse();
+        delete left;
+        delete right;
     }
 
     T Value() {
