@@ -115,3 +115,55 @@
 ![kruskal](resources/kruskal.gif)
 
 **稠密网 + 邻接矩阵 + Prim 算法，稀疏网 + 邻接表 + Kruskal 算法是最优解**。
+
+## 有向无环图的应用
+
+### AOV 图 (Active on Vertex)
+
+AOV 图定义：用顶点表示活动，用弧表示活动间的优先关系的有向无环图。
+
+AOV 图的特性：
+
+- **在AOV图中不能存在回路**，否则回路中的活动就会互为前驱，从而无法执行
+- **AOV图的拓扑序列不是唯一的**
+
+![AOV](resources/AOV.png)
+
+#### 拓扑排序
+
+基本方法：
+
+1. 从有向图中选一个无前驱的顶点输出
+2. 从有向图中删去此顶点以及所有以它为起点的边
+3. 重复 1,2 步骤直到不存在无前驱的顶点
+4. 若此时输出的顶点数小于有向图中的顶点数，则说明有向图中存在回路，否则输出的顶点的顺序即为一个拓扑序列
+
+### AOE 图
+
+AOE 图定义：用顶点表示事件，用边表示活动，边的权值表示活动所需要的时间。
+
+> 在AOE网中存在唯一的、入度为零的顶点，叫做源点；存在唯一的、出度为零的顶点，叫做汇点。
+
+关键路径：**从源点到汇点的最长路径的长度**，即在这条路径上所有活动的持续时间之和，为完成整个工程任务所需的时间，称为**最短完成时间**，路径叫做**关键路径**。
+
+关键活动：**关键路径上的活动叫做关键活动，将 $el(i,j)=ee(i,j)$ 的活动称为关键活动**。
+
+最早发生时间 $ve(i)$：从源点到顶点 $v_i$ 的最长路径的长度，叫做事件 $v_i$ 的最早发生时间。
+
+最晚发生时间 $vl(i)$：是在不影响整个工程工期的情况下，事情的最迟发生时刻。在保证汇点按其最早发生时间发生这一前提下，求事件 $v_i$ 的最迟发生时间。
+
+**时间余量：$el(i,j)-ee(i,j)$ 为活动 $<vi,vj>$ 的时间余量**。
+
+![keyactivity](resources/keyactivity.png)
+
+### 最短路径问题
+
+最短路径问题：如果从有向网中某一顶点（源点）到达另一顶点（终点）的路径不止一条，如何找到一条路径使得此路径各边的权值综合最小。
+
+#### Dijkstra 算法（单源点最短路径问题）
+
+![Dijkstra](resources/Dijkstra.gif)
+
+#### Floyd 算法（所有顶点之间的最短路径）
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4OQeCuLYj-4?si=dhUl5CVoS70s57no" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
