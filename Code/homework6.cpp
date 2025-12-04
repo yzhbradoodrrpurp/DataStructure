@@ -26,12 +26,25 @@ int main(void) {
 
     (*graph1)[5][0] = 8;
 
+    graph1->show();
+    std::cout << std::endl;
+
     graph1->BreadthFirstSearch();
     std::cout << std::endl;
     graph1->DepthFirstSearch();
+    std::cout << std::endl;
+
+    AdjacentMatrix* mst1 = graph1->PrimMST();
+    mst1->show();
+    std::cout << std::endl;
+
+    AdjacentMatrix* mst2 = graph1->KruskalMST();
+    mst2->show();
+    std::cout << std::endl;
 
 
-
+    delete mst1;
+    delete mst2;
     delete graph1;
 
     return 0;
