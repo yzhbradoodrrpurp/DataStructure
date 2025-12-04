@@ -10,16 +10,16 @@
 
 template<typename T>
 
-class Tree {
+class BinaryTree {
 protected:
     T value;
-    Tree<T>* left;
-    Tree<T>* right;
+    BinaryTree<T>* left;
+    BinaryTree<T>* right;
 
 public:
-    Tree(T value=T(), Tree<T>* left=nullptr, Tree<T>* right=nullptr): value(value), left(left), right(right) {}
+    BinaryTree(T value=T(), BinaryTree<T>* left=nullptr, BinaryTree<T>* right=nullptr): value(value), left(left), right(right) {}
 
-    virtual ~Tree() {
+    virtual ~BinaryTree() {
         delete left;
         delete right;
     }
@@ -28,19 +28,19 @@ public:
         return value;
     }
 
-    Tree<T>* leftTree() {
+    BinaryTree<T>* leftTree() {
         return left;
     }
 
-    Tree<T>* rightTree() {
+    BinaryTree<T>* rightTree() {
         return right;
     }
 
-    void addLeft(Tree<T>* tree) {
+    void addLeft(BinaryTree<T>* tree) {
         left = tree;
     }
 
-    void addRight(Tree<T>* tree) {
+    void addRight(BinaryTree<T>* tree) {
         right = tree;
     }
 
@@ -85,11 +85,11 @@ public:
                 right->preorderTraverse();
         }
         else {
-            std::stack<Tree<T>*> stack;
+            std::stack<BinaryTree<T>*> stack;
             stack.push(this);
 
             while (!stack.empty()) {
-                Tree<T>* tree = stack.top();
+                BinaryTree<T>* tree = stack.top();
                 stack.pop();
                 std::cout << tree->value << "\t";
 
@@ -113,8 +113,8 @@ public:
                 right->inorderTraverse();
         }
         else {
-            std::stack<Tree<T>*> stack;
-            Tree<T>* currrent = this;
+            std::stack<BinaryTree<T>*> stack;
+            BinaryTree<T>* currrent = this;
 
             while (currrent != nullptr || !stack.empty()) {
                 while (currrent != nullptr) {
@@ -141,11 +141,11 @@ public:
             std::cout << value << "\t";
         }
         else {
-            std::stack<Tree<T>*> s1, s2;
+            std::stack<BinaryTree<T>*> s1, s2;
             s1.push(this);
 
             while (!s1.empty()) {
-                Tree<T>* node = s1.top(); s1.pop();
+                BinaryTree<T>* node = s1.top(); s1.pop();
                 s2.push(node);
 
                 if (node->left)

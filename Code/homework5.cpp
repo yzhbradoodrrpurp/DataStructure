@@ -2,7 +2,7 @@
 // Created by 易治行 on 2025/11/20.
 //
 
-#include "Tree.h"
+#include "BinaryTree.h"
 
 int main(void) {
     // 构造一棵示例二叉树：
@@ -12,12 +12,12 @@ int main(void) {
     //     / \   \
     //    4   5   6
 
-    Tree<int>* n1 = new Tree<int>(1);
-    Tree<int>* n2 = new Tree<int>(2);
-    Tree<int>* n3 = new Tree<int>(3);
-    Tree<int>* n4 = new Tree<int>(4);
-    Tree<int>* n5 = new Tree<int>(5);
-    Tree<int>* n6 = new Tree<int>(6);
+    BinaryTree<int>* n1 = new BinaryTree<int>(1);
+    BinaryTree<int>* n2 = new BinaryTree<int>(2);
+    BinaryTree<int>* n3 = new BinaryTree<int>(3);
+    BinaryTree<int>* n4 = new BinaryTree<int>(4);
+    BinaryTree<int>* n5 = new BinaryTree<int>(5);
+    BinaryTree<int>* n6 = new BinaryTree<int>(6);
 
     n1->addLeft(n2); n1->addRight(n3);
     n2->addLeft(n4); n2->addRight(n5);

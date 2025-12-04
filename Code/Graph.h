@@ -8,6 +8,7 @@
 #include <vector>
 #include "LinkedStack.h"
 #include "LinkedQueue.h"
+#include "BinaryTree.h"
 #include <iostream>
 
 class AdjacentMatrix {
