@@ -6,6 +6,7 @@
 #define HASHTABLE_H
 
 #include <iostream>
+#include <vector>
 
 class HashTable {
 private:
@@ -49,26 +50,34 @@ public:
         }
     }
 
-    int find(int item) {
+    std::vector<int> find(int item) {
+        // the first is the found index, and the second is the number of times probed
         int startidx = item % 13;
+        int times = 1;
 
         if (occupied[startidx] && array[startidx] == item)
-            return startidx;
+            return std::vector<int>{startidx, times};
 
         int idx = (startidx + 1) % capacity;
 
         while (occupied[idx]) {
+            times++;
+
             if (array[idx] == item)
-                return idx;
-            
+                return std::vector<int>{idx, times};
+
             idx = (idx + 1) % capacity;
         }
 
-        return -1;
+        return std::vector<int>{-1, times};
+    }
+
+    int getLength() {
+        return length;
     }
 
     void remove(int item) {
-        int idx = this->find(item);
+        int idx = this->find(item)[0];
 
         if (idx != -1) {
             occupied[idx] = false;
