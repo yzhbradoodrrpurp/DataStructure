@@ -7,8 +7,9 @@
 #include <random>
 
 void quickSort(std::vector<int>&, int, int);
-// void stackSort(std::vector<int>&);
+void heapSort(std::vector<int>&);
 void swap(int&, int&);
+void heapify(std::vector<int>&, int, int);
 
 int main(void) {
     int length;
@@ -48,7 +49,11 @@ int main(void) {
         std::cout << element << " ";
     std::cout << std::endl;
 
-    // stackSort(elements);
+    heapSort(elements);
+    std::cout << "After heap sort: ";
+    for (auto element: elements)
+        std::cout << element << " ";
+    std::cout << std::endl;
 
     return 0;
 }
@@ -81,4 +86,42 @@ void swap(int& a, int& b) {
     int c = a;
     a = b;
     b = c;
+}
+
+void heapify(std::vector<int>& elements, int n, int i) {
+    int largest = i;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+
+    if (l < n && elements[l] > elements[largest])
+        largest = l;
+
+    if (r < n && elements[r] > elements[largest])
+        largest = r;
+
+    if (largest != i) {
+        swap(elements[i], elements[largest]);
+        heapify(elements, n, largest);
+    }
+}
+
+void heapSort(std::vector<int>& elements) {
+    int n = static_cast<int>(elements.size());
+    if (n <= 1) return;
+
+    // 建堆（构造最大堆）
+    for (int i = n / 2 - 1; i >= 0; --i) {
+        heapify(elements, n, i);
+    }
+
+    // 逐个取出堆顶到数组末尾，并对剩余元素重新堆化
+    for (int i = n - 1; i > 0; --i) {
+        swap(elements[0], elements[i]);
+        heapify(elements, i, 0);
+    }
+
+    // 可选：打印结果（保留注释，按需取消注释）
+    // std::cout << "After heap sort: ";
+    // for (auto element: elements) std::cout << element << " ";
+    // std::cout << std::endl;
 }

@@ -31,10 +31,36 @@
 1. 初始化指针与枢轴，选数组第一个元素作为枢轴 pivot，左指针 i 从左端开始，右指针 j 从右端开始
 2. 移动左指针 i，向右找第一个大于 pivot 的元素；移动右指针 j，向左找第一个小于 pivot 的元素
    - 如果 $i < j$，交换两个元素的位置，然后继续重复步骤 2
-   - 如果 $i = j$，此时 j 指向的位置就是枢轴的最终位置，交换枢轴和 j 的位置
+   - 如果 $i \ge j$，此时 j 指向的位置就是枢轴的最终位置，交换枢轴和 j 的位置
 3. 此时左区域 $[left, j-1]$ 和右区域 $[j+1, right]$ 分别再次进行快速排序
 
 > $i > j$ 的情况不会发生。
+
+```c++
+void quickSort(std::vector<int>& elements, int left, int right) {
+    if (left >= right)
+        return;
+
+    int pivot = elements[left];
+    int i = left, j = right;
+
+    while (i < j) {
+        while (i < j && elements[j] >= pivot)
+            j--;
+
+        while (i < j && elements[i] <= pivot)
+            i++;
+
+        if (i < j)
+            swap(elements[i], elements[j]);
+    }
+
+    swap(elements[left], elements[i]);
+
+    quickSort(elements, left, i - 1);
+    quickSort(elements, i + 1, right);
+}
+```
 
 ![Quicksort-example](resources/Quicksort-example.gif)
 
