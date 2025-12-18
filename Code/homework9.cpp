@@ -120,8 +120,4 @@ void heapSort(std::vector<int>& elements) {
         heapify(elements, i, 0);
     }
 
-    // 可选：打印结果（保留注释，按需取消注释）
-    // std::cout << "After heap sort: ";
-    // for (auto element: elements) std::cout << element << " ";
-    // std::cout << std::endl;
 }
