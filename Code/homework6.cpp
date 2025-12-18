@@ -1,51 +1,50 @@
 //
-// Created by 易治行 on 2025/12/4.
+// Created by 易治行 on 2025/11/20.
 //
 
-#include "Graph.h"
-
+#include "BinaryTree.h"
 
 int main(void) {
-    AdjacentMatrix* graph1 = new AdjacentMatrix(6);
+    // 构造一棵示例二叉树：
+    //        1
+    //       / \
+    //      2   3
+    //     / \   \
+    //    4   5   6
 
-    (*graph1)[0][1] = 4;
-    (*graph1)[0][2] = 7;
-    (*graph1)[0][5] = 8;
+    BinaryTree<int>* n1 = new BinaryTree<int>(1);
+    BinaryTree<int>* n2 = new BinaryTree<int>(2);
+    BinaryTree<int>* n3 = new BinaryTree<int>(3);
+    BinaryTree<int>* n4 = new BinaryTree<int>(4);
+    BinaryTree<int>* n5 = new BinaryTree<int>(5);
+    BinaryTree<int>* n6 = new BinaryTree<int>(6);
 
-    (*graph1)[1][0] = 4;
-    (*graph1)[1][2] = 5;
+    n1->addLeft(n2); n1->addRight(n3);
+    n2->addLeft(n4); n2->addRight(n5);
+    n3->addRight(n6);
 
-    (*graph1)[2][0] = 7;
-    (*graph1)[2][1] = 5;
-    (*graph1)[2][4] = 2;
-
-    (*graph1)[3][4] = 9;
-
-    (*graph1)[4][2] = 2;
-    (*graph1)[4][3] = 9;
-
-    (*graph1)[5][0] = 8;
-
-    graph1->show();
+    n1->show();
     std::cout << std::endl;
 
-    graph1->BreadthFirstSearch();
+    // preorder traversal
+    n1->preorderTraverse(true);
     std::cout << std::endl;
-    graph1->DepthFirstSearch();
-    std::cout << std::endl;
-
-    AdjacentMatrix* mst1 = graph1->PrimMST();
-    mst1->show();
+    n1->preorderTraverse(false);
     std::cout << std::endl;
 
-    AdjacentMatrix* mst2 = graph1->KruskalMST();
-    mst2->show();
+    // inorder traversal
+    n1->inorderTraverse(true);
+    std::cout << std::endl;
+    n1->inorderTraverse(false);
     std::cout << std::endl;
 
+    // postorder traversal
+    n1->postorderTraverse(true);
+    std::cout << std::endl;
+    n1->postorderTraverse(false);
+    std::cout << std::endl;
 
-    delete mst1;
-    delete mst2;
-    delete graph1;
+    delete n1;
 
     return 0;
 }
