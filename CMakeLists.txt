@@ -11,4 +11,7 @@ add_executable(homework6 Code/homework6.cpp)
 add_executable(homework7 Code/homework7.cpp)
 add_executable(homework8 Code/homework8.cpp)
 add_executable(homework9 Code/homework9.cpp)
+
 add_executable(saddle Code/saddle.cpp)
+
+add_executable(RockPaperScissors Code/RockPaperScissors/run.cpp)

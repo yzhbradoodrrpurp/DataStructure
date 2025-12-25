@@ -50,7 +50,7 @@
 - 如果 ch 是操作数，则放入 opnd
 - 如果 ch 是操作符，则比较 optrTop 和 ch 的优先级
   - **如果 ch > optrTop，则 ch 进入 optr**
-  - **如果 ch < optrTop**，则从 opnd 中推出两个操作数 a, b，从 optr 中推出 optrTop，执行 a optrTop b 并将结果压入 opnd 中
+  - **如果 ch < optrTop**，则从 opnd 中推出两个操作数 a, b，从 optr 中推出 optrTop，执行 a optrTop b 并将结果压入 opnd 中，再将 ch 压入栈中
   - 如果 optrTop = ch 且 ch == )，则 optrTop 一定为 (，则从 optr 中推出 optrTop 并对消括号
   - 如果 optrTop 和 ch 不兼容，则出现错误
 
