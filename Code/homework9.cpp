@@ -89,33 +89,37 @@ void swap(int& a, int& b) {
 }
 
 void heapify(std::vector<int>& elements, int n, int i) {
-    int largest = i;
-    int l = 2 * i + 1;
-    int r = 2 * i + 2;
+    int largestNodeIndex = i;
+    int leftNodeIndex = 2 * i + 1;
+    int rightNodeIndex = 2 * i + 2;
 
-    if (l < n && elements[l] > elements[largest])
-        largest = l;
+    // 如果左节点大于当前最大节点，更新最大节点索引
+    if (leftNodeIndex < n && elements[leftNodeIndex] > elements[largestNodeIndex])
+        largestNodeIndex = leftNodeIndex;
 
-    if (r < n && elements[r] > elements[largest])
-        largest = r;
+    // 如果右节点大于当前最大节点，更新最大节点索引
+    if (rightNodeIndex < n && elements[rightNodeIndex] > elements[largestNodeIndex])
+        largestNodeIndex = rightNodeIndex;
 
-    if (largest != i) {
-        swap(elements[i], elements[largest]);
-        heapify(elements, n, largest);
+    if (largestNodeIndex != i) {
+        swap(elements[i], elements[largestNodeIndex]);
+        heapify(elements, n, largestNodeIndex);
     }
 }
 
 void heapSort(std::vector<int>& elements) {
-    int n = static_cast<int>(elements.size());
-    if (n <= 1) return;
+    int size = static_cast<int>(elements.size());
 
-    // 建堆（构造最大堆）
-    for (int i = n / 2 - 1; i >= 0; --i) {
-        heapify(elements, n, i);
-    }
+    if (size <= 1)
+        return;
+
+    // 建堆（构造最大堆），从最后一个非叶节点开始堆化
+    // 之所以从最后一个非叶节点开始，是因为叶节点本身已经是堆
+    for (int i = size / 2 - 1; i >= 0; --i)
+        heapify(elements, size, i);
 
     // 逐个取出堆顶到数组末尾，并对剩余元素重新堆化
-    for (int i = n - 1; i > 0; --i) {
+    for (int i = size - 1; i > 0; --i) {
         swap(elements[0], elements[i]);
         heapify(elements, i, 0);
     }
