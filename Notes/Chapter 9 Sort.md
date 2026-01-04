@@ -34,8 +34,6 @@
    - 如果 $i \ge j$，此时 j 指向的位置就是枢轴的最终位置，交换枢轴和 j 的位置
 3. 此时左区域 $[left, j-1]$ 和右区域 $[j+1, right]$ 分别再次进行快速排序
 
-> $i > j$ 的情况不会发生。
-
 ```c++
 void quickSort(std::vector<int>& elements, int left, int right) {
     if (left >= right)
@@ -55,10 +53,10 @@ void quickSort(std::vector<int>& elements, int left, int right) {
             swap(elements[i], elements[j]);
     }
 
-    swap(elements[left], elements[i]);
+    swap(elements[left], elements[j]);
 
-    quickSort(elements, left, i - 1);
-    quickSort(elements, i + 1, right);
+    quickSort(elements, left, j - 1);
+    quickSort(elements, j + 1, right);
 }
 ```
 

@@ -76,10 +76,10 @@ void quickSort(std::vector<int>& elements, int left, int right) {
             swap(elements[i], elements[j]);
     }
 
-    swap(elements[left], elements[i]);
+    swap(elements[left], elements[j]);
 
-    quickSort(elements, left, i - 1);
-    quickSort(elements, i + 1, right);
+    quickSort(elements, left, j - 1);
+    quickSort(elements, j + 1, right);
 }
 
 void swap(int& a, int& b) {
