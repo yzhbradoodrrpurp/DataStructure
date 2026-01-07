@@ -62,13 +62,12 @@ public:
     }
 
     void show(int indent=0) {
-        for (int i = 0; i < indent; i++)
-            std::cout << "\t";
-
-        std::cout << value << std::endl;
-
         if (left)
             left->show(indent + 1);
+
+        for (int i = 0; i < indent; i++)
+            std::cout << "\t";
+        std::cout << value << std::endl;
 
         if (right)
             right->show(indent + 1);
